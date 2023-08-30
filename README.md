@@ -39,26 +39,64 @@ POST /menu/create
 }
 ```
 
+# Atualizar um Menu por ID
+
+O endpoint `PATCH` permite atualizar informações de um menu específico com base no seu ID.
+
+## Requisição
+
+- **Método:** `PATCH`
+- **URL:** `/menu/:id`
+- **Parâmetros URL:**
+  - `id`: O ID do menu a ser atualizado.
+- **Corpo da Requisição:** Um objeto contendo as informações a serem atualizadas no menu.
+
+```json
+{
+  "name": "Novo Nome do Menu",
+  "turn": "diurno"
+  // Outros campos opcionais de atualização
+}
+```
+
+## Resposta
+
+- **Código de Status:** 200 OK
+- **Corpo da Resposta:** O menu atualizado com as informações atualizadas.
+
+```json
+{
+  "id": "ID do Menu",
+  "name": "Nome Atualizado do Menu",
+  "turn": "diurno"
+  // Outros campos atualizados
+}
+```
+## Exemplo de Requisição
+
+```http
+PATCH /menu/64ee3ac24f7b5d610e6e3aba
+Content-Type: application/json
+
+{
+  "name": "Novo Nome do Menu Atualizado",
+  "turn": "noturno"
+}
+```
+
+## Exemplo de Resposta
+
+```json
+{
+  "id": "64ee3ac24f7b5d610e6e3aba",
+  "name": "Novo Nome do Menu Atualizado",
+  "turn": "noturno"
+}
+```
+
 ## Horário do Cardápio
 
 O `MenuController` determina automaticamente se deve retornar o cardápio diurno ou noturno com base no horário atual. Itens do cardápio diurno são exibidos durante o dia, enquanto itens do cardápio noturno são exibidos após as 18h até as 6h.
-
-## Como Usar
-
-Para usar o `MenuController`, certifique-se de que você possui o `MenuService` corretamente configurado e injetado no controlador. As rotas estão configuradas automaticamente de acordo com as anotações de rota, portanto, você pode acessar as diferentes rotas conforme documentado acima.
-
-## Contribuição
-
-Contribuições são bem-vindas! Se você encontrar problemas ou tiver melhorias para sugerir, fique à vontade para abrir um problema ou enviar um pull request.
-
-## Licença
-
-Este projeto está sob a licença [MIT](LICENSE).
-
-Lembre-se de adaptar as informações acima de acordo com a estrutura da sua aplicação, seus endpoints específicos, detalhes do DTO e do serviço que você está usando, bem como quaisquer outras personalizações necessárias. O README deve ser uma ferramenta útil para outros desenvolvedores entenderem como usar o `MenuController` em sua aplicação.
-
-
-Claro, aqui está um exemplo de README para o `ProductsController`:
 
 # Products Controller
 
@@ -133,26 +171,61 @@ POST /products/create
 }
 ```
 
-## Exceções
+# Atualizar um Produto por ID
 
-O `ProductsController` pode lançar as seguintes exceções em resposta a diferentes cenários:
+O endpoint `PATCH` permite atualizar informações de um produto específico com base no seu ID.
 
-- `BadRequestException`: Quando um parâmetro obrigatório está ausente ou inválido.
-- `NotFoundException`: Quando um produto não é encontrado com base no nome ou ID fornecido.
+## Requisição
 
-## Como Usar
+- **Método:** `PATCH`
+- **URL:** `/products/:id`
+- **Parâmetros URL:**
+  - `id`: O ID do produto a ser atualizado.
+- **Corpo da Requisição:** Um objeto contendo as informações a serem atualizadas no produto.
 
-Para usar o `ProductsController`, certifique-se de que você possui o `ProductsService` corretamente configurado e injetado no controlador. As rotas estão configuradas automaticamente de acordo com as anotações de rota, portanto, você pode acessar as diferentes rotas conforme documentado acima.
+```json
+{
+  "name": "Novo Nome do Produto",
+  "price": 19.99
+  // Outros campos opcionais de atualização
+}
+```
 
-## Contribuição
+## Resposta
 
-Contribuições são bem-vindas! Se você encontrar problemas ou tiver melhorias para sugerir, fique à vontade para abrir um problema ou enviar um pull request.
+- **Código de Status:** 200 OK
+- **Corpo da Resposta:** O produto atualizado com as informações atualizadas.
 
-## Licença
+```json
+{
+  "id": "ID do Produto",
+  "name": "Nome Atualizado do Produto",
+  "price": 19.99
+  // Outros campos atualizados
+}
+```
 
-Este projeto está sob a licença [MIT](LICENSE).
+## Exemplo de Requisição
 
-Lembre-se de adaptar as informações acima de acordo com a estrutura da sua aplicação, seus endpoints específicos, detalhes do DTO e do serviço que você está usando, bem como quaisquer outras personalizações necessárias. O README deve ser uma ferramenta útil para outros desenvolvedores entenderem como usar o `ProductsController` em sua aplicação.
+```http
+PATCH /products/123456
+Content-Type: application/json
+
+{
+  "name": "Novo Nome do Produto Atualizado",
+  "price": 24.99
+}
+```
+
+## Exemplo de Resposta
+
+```json
+{
+  "id": "123456",
+  "name": "Novo Nome do Produto Atualizado",
+  "price": 24.99
+}
+```
 
 # Categories Controller
 
@@ -209,24 +282,54 @@ POST /categories/create
   // Outros campos do DTO...
 }
 ```
+# Atualizar uma Categoria por ID
 
-## Exceções
+O endpoint `PATCH` permite atualizar informações de uma categoria específica com base no seu ID.
 
-O `CategoriesController` pode lançar as seguintes exceções em resposta a diferentes cenários:
+## Requisição
 
-- `BadRequestException`: Quando um parâmetro obrigatório está ausente ou inválido.
-- `NotFoundException`: Quando uma categoria não é encontrada com base no nome fornecido.
+- **Método:** `PATCH`
+- **URL:** `/categories/:id`
+- **Parâmetros URL:**
+  - `id`: O ID da categoria a ser atualizada.
+- **Corpo da Requisição:** Um objeto contendo as informações a serem atualizadas na categoria.
 
-## Como Usar
+```json
+{
+  "name": "Novo Nome da Categoria"
+  // Outros campos opcionais de atualização
+}
+```
 
-Para usar o `CategoriesController`, certifique-se de que você possui o `CategoriesService` corretamente configurado e injetado no controlador. As rotas estão configuradas automaticamente de acordo com as anotações de rota, portanto, você pode acessar as diferentes rotas conforme documentado acima.
+## Resposta
 
-## Contribuição
+- **Código de Status:** 200 OK
+- **Corpo da Resposta:** A categoria atualizada com as informações atualizadas.
 
-Contribuições são bem-vindas! Se você encontrar problemas ou tiver melhorias para sugerir, fique à vontade para abrir um problema ou enviar um pull request.
+```json
+{
+  "id": "ID da Categoria",
+  "name": "Nome Atualizado da Categoria",
+  // Outros campos atualizados
+}
+```
 
-## Licença
+## Exemplo de Requisição
 
-Este projeto está sob a licença [MIT](LICENSE).
+```http
+PATCH /categories/123456
+Content-Type: application/json
 
-Lembre-se de adaptar as informações acima de acordo com a estrutura da sua aplicação, seus endpoints específicos e os detalhes do DTO e do serviço que você está usando. O README deve ser uma ferramenta útil para outros desenvolvedores entenderem como usar o `CategoriesController` em sua aplicação.
+{
+  "name": "Nova Categoria Atualizada"
+}
+```
+
+## Exemplo de Resposta
+
+```json
+{
+  "id": "123456",
+  "name": "Nova Categoria Atualizada"
+}
+```
