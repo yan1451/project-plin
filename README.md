@@ -1,73 +1,232 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Menu Controller
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+O `MenuController` é responsável por lidar com as requisições relacionadas ao menu de refeições em sua aplicação. Ele fornece endpoints para listar os itens do cardápio com base no horário atual e para criar novos itens no cardápio.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Rotas
 
-## Description
+### Listar Itens do Cardápio
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Endpoint: `GET /menu`
 
-## Installation
+Esta rota permite listar os itens do cardápio com base no horário atual. O cardápio noturno é exibido após as 18h até as 6h, e o cardápio diurno é exibido durante o dia.
 
-```bash
-$ npm install
+**Exemplo de Uso:**
+
+```http
+GET /menu
 ```
 
-## Running the app
+### Criar Novo Item no Cardápio
 
-```bash
-# development
-$ npm run start
+Endpoint: `POST /menu/create`
 
-# watch mode
-$ npm run start:dev
+Esta rota permite criar um novo item no cardápio.
 
-# production mode
-$ npm run start:prod
+**Corpo da Requisição:**
+
+O corpo da requisição deve conter os detalhes do item a ser criado, conforme o formato definido pelo DTO `CreateMenuDto`.
+
+**Exemplo de Uso:**
+
+```http
+POST /menu/create
+
+{
+  "name": "Nome do Item",
+  "description": "Descrição do Item",
+  "price": 10.99,
+  // Outros campos do DTO...
+}
 ```
 
-## Test
+## Horário do Cardápio
 
-```bash
-# unit tests
-$ npm run test
+O `MenuController` determina automaticamente se deve retornar o cardápio diurno ou noturno com base no horário atual. Itens do cardápio diurno são exibidos durante o dia, enquanto itens do cardápio noturno são exibidos após as 18h até as 6h.
 
-# e2e tests
-$ npm run test:e2e
+## Como Usar
 
-# test coverage
-$ npm run test:cov
+Para usar o `MenuController`, certifique-se de que você possui o `MenuService` corretamente configurado e injetado no controlador. As rotas estão configuradas automaticamente de acordo com as anotações de rota, portanto, você pode acessar as diferentes rotas conforme documentado acima.
+
+## Contribuição
+
+Contribuições são bem-vindas! Se você encontrar problemas ou tiver melhorias para sugerir, fique à vontade para abrir um problema ou enviar um pull request.
+
+## Licença
+
+Este projeto está sob a licença [MIT](LICENSE).
+
+Lembre-se de adaptar as informações acima de acordo com a estrutura da sua aplicação, seus endpoints específicos, detalhes do DTO e do serviço que você está usando, bem como quaisquer outras personalizações necessárias. O README deve ser uma ferramenta útil para outros desenvolvedores entenderem como usar o `MenuController` em sua aplicação.
+
+
+Claro, aqui está um exemplo de README para o `ProductsController`:
+
+# Products Controller
+
+O `ProductsController` é responsável por lidar com as requisições relacionadas aos produtos em sua aplicação. Ele fornece endpoints para listar produtos, encontrar produtos por nome, encontrar produtos por ID e criar novos produtos.
+
+## Rotas
+
+### Listar Todos os Produtos
+
+Endpoint: `GET /products`
+
+Esta rota permite listar todos os produtos existentes.
+
+**Exemplo de Uso:**
+
+```http
+GET /products
 ```
 
-## Support
+### Encontrar Produto por Nome
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Endpoint: `GET /products/findByName`
 
-## Stay in touch
+Esta rota permite encontrar um produto específico com base no nome fornecido.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+**Parâmetros:**
 
-## License
+- `name` (string, obrigatório): O nome do produto a ser encontrado.
 
-Nest is [MIT licensed](LICENSE).
+**Exemplo de Uso:**
+
+```http
+GET /products/findByName?name=nome-do-produto
+```
+
+### Encontrar Produto por ID
+
+Endpoint: `GET /products/:id`
+
+Esta rota permite encontrar um produto específico com base no ID fornecido.
+
+**Parâmetros:**
+
+- `id` (string, obrigatório): O ID do produto a ser encontrado.
+
+**Exemplo de Uso:**
+
+```http
+GET /products/1
+```
+
+### Criar Novo Produto
+
+Endpoint: `POST /products/create`
+
+Esta rota permite criar um novo produto.
+
+**Corpo da Requisição:**
+
+O corpo da requisição deve conter os detalhes do produto a ser criado, conforme o formato definido pelo DTO `CreateProductDto`.
+
+**Exemplo de Uso:**
+
+```http
+POST /products/create
+
+{
+  "name": "Novo Produto",
+  "description": "Descrição do Produto",
+  "price": 19.99,
+  // Outros campos do DTO...
+}
+```
+
+## Exceções
+
+O `ProductsController` pode lançar as seguintes exceções em resposta a diferentes cenários:
+
+- `BadRequestException`: Quando um parâmetro obrigatório está ausente ou inválido.
+- `NotFoundException`: Quando um produto não é encontrado com base no nome ou ID fornecido.
+
+## Como Usar
+
+Para usar o `ProductsController`, certifique-se de que você possui o `ProductsService` corretamente configurado e injetado no controlador. As rotas estão configuradas automaticamente de acordo com as anotações de rota, portanto, você pode acessar as diferentes rotas conforme documentado acima.
+
+## Contribuição
+
+Contribuições são bem-vindas! Se você encontrar problemas ou tiver melhorias para sugerir, fique à vontade para abrir um problema ou enviar um pull request.
+
+## Licença
+
+Este projeto está sob a licença [MIT](LICENSE).
+
+Lembre-se de adaptar as informações acima de acordo com a estrutura da sua aplicação, seus endpoints específicos, detalhes do DTO e do serviço que você está usando, bem como quaisquer outras personalizações necessárias. O README deve ser uma ferramenta útil para outros desenvolvedores entenderem como usar o `ProductsController` em sua aplicação.
+
+# Categories Controller
+
+O `CategoriesController` é responsável por lidar com as requisições relacionadas às categorias de produtos em sua aplicação.
+
+## Rotas
+
+### Listar Todas as Categorias
+
+Endpoint: `GET /categories`
+
+Esta rota permite listar todas as categorias de produtos existentes.
+
+**Exemplo de Uso:**
+
+```http
+GET /categories
+```
+
+### Encontrar Categoria por Nome
+
+Endpoint: `GET /categories/findByName`
+
+Esta rota permite encontrar uma categoria específica com base no nome fornecido.
+
+**Parâmetros:**
+
+- `name` (string, obrigatório): O nome da categoria a ser encontrado.
+
+**Exemplo de Uso:**
+
+```http
+GET /categories/findByName?name=nome-da-categoria
+```
+
+### Criar Nova Categoria
+
+Endpoint: `POST /categories/create`
+
+Esta rota permite criar uma nova categoria de produto.
+
+**Corpo da Requisição:**
+
+O corpo da requisição deve conter os detalhes da categoria a ser criada, conforme o formato definido pelo DTO `CreateCategoryDto`.
+
+**Exemplo de Uso:**
+
+```http
+POST /categories/create
+
+{
+  "name": "Nova Categoria",
+  "menuId": 1,
+  // Outros campos do DTO...
+}
+```
+
+## Exceções
+
+O `CategoriesController` pode lançar as seguintes exceções em resposta a diferentes cenários:
+
+- `BadRequestException`: Quando um parâmetro obrigatório está ausente ou inválido.
+- `NotFoundException`: Quando uma categoria não é encontrada com base no nome fornecido.
+
+## Como Usar
+
+Para usar o `CategoriesController`, certifique-se de que você possui o `CategoriesService` corretamente configurado e injetado no controlador. As rotas estão configuradas automaticamente de acordo com as anotações de rota, portanto, você pode acessar as diferentes rotas conforme documentado acima.
+
+## Contribuição
+
+Contribuições são bem-vindas! Se você encontrar problemas ou tiver melhorias para sugerir, fique à vontade para abrir um problema ou enviar um pull request.
+
+## Licença
+
+Este projeto está sob a licença [MIT](LICENSE).
+
+Lembre-se de adaptar as informações acima de acordo com a estrutura da sua aplicação, seus endpoints específicos e os detalhes do DTO e do serviço que você está usando. O README deve ser uma ferramenta útil para outros desenvolvedores entenderem como usar o `CategoriesController` em sua aplicação.
