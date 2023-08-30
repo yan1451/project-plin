@@ -1,3 +1,42 @@
+## Passo a Passo para Rodar a Aplicação
+
+1. **Clone o Projeto:**
+   Abra o terminal e navegue até a pasta onde você deseja clonar o projeto. Execute o seguinte comando para clonar o projeto do repositório remoto:
+
+   ```bash
+   git clone <URL_DO_REPOSITÓRIO>
+   ```
+
+   Substitua `<URL_DO_REPOSITÓRIO>` pela URL do seu repositório no GitHub ou em outra plataforma.
+
+2. **Instale as Dependências:**
+   Navegue até a pasta do projeto que você acabou de clonar. Execute o seguinte comando para instalar todas as dependências do projeto:
+
+   ```bash
+   npm install
+   ```
+
+3. **Inicie a Aplicação:**
+   Após a instalação das dependências, você pode iniciar a aplicação. Execute o seguinte comando:
+
+   ```bash
+   npm run start:dev
+   ```
+
+   Isso iniciará a aplicação no modo de desenvolvimento. Acesse `http://localhost:3000` no seu navegador para interagir com a aplicação.
+
+4. **Visualize o Banco de Dados:**
+   Se o banco de dados estiver configurado corretamente, você pode usar o Prisma Studio para visualizar e interagir com os dados do banco. No terminal, execute o seguinte comando:
+
+   ```bash
+   npx prisma studio
+   ```
+
+   Isso abrirá uma interface gráfica do Prisma Studio no seu navegador. Você poderá explorar os dados do banco de dados por meio dessa interface.
+
+5. **Pronto para Usar:**
+   Agora a aplicação está rodando e você pode começar a interagir com ela, criar, atualizar e visualizar dados, e explorar o banco de dados por meio do Prisma Studio.
+
 # Menu Controller
 
 O `MenuController` é responsável por lidar com as requisições relacionadas ao menu de refeições em sua aplicação. Ele fornece endpoints para listar os itens do cardápio com base no horário atual e para criar novos itens no cardápio.
