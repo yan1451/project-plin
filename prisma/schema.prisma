@@ -11,24 +11,27 @@ datasource db {
 }
 
 model Menu {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  turn String
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  turn     String
+  categories Category[]
 }
 
 model Category {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  name       String
-  productIDS String[]  @db.ObjectId
-  products   Product[] @relation(fields: [productIDS], references: [id])
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  name      String    @unique
+  productId String[]  @db.ObjectId
+  products  Product[] @relation(fields: [productId], references: [id])
+  Menu      Menu?     @relation(fields: [menuId], references: [id])
+  menuId    String?   @db.ObjectId
 }
 
 model Product {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  price       String
+  name        String     @unique
+  price       Float
   image       String
   description String
-  categoryIDS String[]   @db.ObjectId
-  categories  Category[] @relation(fields: [categoryIDS], references: [id])
+  categoryId  String[]   @db.ObjectId
+  categories  Category[] @relation(fields: [categoryId], references: [id])
 }
